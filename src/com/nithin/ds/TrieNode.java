@@ -22,6 +22,33 @@ public class TrieNode {
         children = new TrieNode[NUM_OF_CHILDREN];
     }
 
+
+    static int letterIndex(char c) {
+
+        int ascii = c;
+
+        if(ascii>= 97)
+            return ascii-97;
+        else
+            return ascii - 65;
+    }
+
+    public boolean addChild(char c) {
+
+        return addChild(new TrieNode(c));
+    }
+
+    public boolean addChild(TrieNode child) {
+
+        int pos = letterIndex(child.c);
+
+        if(children[pos] != null)
+            return false;
+
+        children[pos] = child;
+        return true;
+    }
+
     public String getWord() {
         return word;
     }
